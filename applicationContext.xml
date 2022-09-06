@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+            
+            <!-- Setter/getter injection -->
+       <bean id="s1" class="com.SpringDemo.bean.entity.Student">
+            <property name="id" value="1001">
+            </property>
+            <property name="name" value="Ram"></property>
+       </bean>   
+                
+                <!-- Construction Injection -->
+		<bean id="s2" class="com.SpringConsDemo.bean.Student " >
+			<constructor-arg value="1002" type="int"> </constructor-arg>
+			<constructor-arg value="Daksh" > </constructor-arg>
+		</bean>
+		
+						<!-- Item class Setter -->
+          	<bean id="i1" class="com.springwithdependencies.si.Item">
+          	<property name="itemId" value="101" ></property>
+          	<property name="itemName" value="Pencil" ></property>
+          	<property name="itemPrice" value="5" ></property>
+          	</bean>	
+                
+                <!-- Order Class Setter  -->
+          <bean id="o1" class="com.springwithdependencies.si.Orderr">
+          <property name="orderId" value="500"> </property>
+          <property name="orderQuantity" value="100"> </property>
+          <property name="totalPrice" value="120.50"> </property>
+          <property name="item" ref="i1"> </property>
+          </bean>
+          		
+          		<!-- Library class constructor -->
+          	<bean id="l1" class="com.springwithdependencies.ci.Library">
+          	<constructor-arg name="libId" value="301" > </constructor-arg>
+          	<constructor-arg name="libName" value="Lokmanya Tilak" > </constructor-arg>
+          	<constructor-arg name="book" ref="b1" > </constructor-arg>
+          	</bean>
+                
+                <!-- Book class constructor -->
+            <bean id="b1" class="com.springwithdependencies.ci.Book"> 
+            <constructor-arg name="bookId" value="111" ></constructor-arg>
+            <constructor-arg name="bookName" value="You did it!" ></constructor-arg>
+            </bean>
+            
+            <!-- Book List of objects -->
+             <bean id="b" class="com.spring.ciobj.list.Book"> 
+            <constructor-arg name="bookId" value="112" ></constructor-arg>
+            <constructor-arg name="bookName" value="You did it!" ></constructor-arg>
+            </bean>
+            
+             <bean id="b2" class="com.spring.ciobj.list.Book"> 
+            <constructor-arg name="bookId" value="221" ></constructor-arg>
+            <constructor-arg name="bookName" value="Spirit" ></constructor-arg>
+            </bean>
+            
+             <bean id="b3" class="com.spring.ciobj.list.Book"> 
+            <constructor-arg name="bookId" value="120" ></constructor-arg>
+            <constructor-arg name="bookName" value="Expectations" ></constructor-arg>
+            </bean>
+                
+                <!-- Library class object collection -->
+                <bean id="l2" class="com.spring.ciobj.list.Library">
+                <constructor-arg name="libId" value="444" ></constructor-arg>
+                <constructor-arg name="libName" value="RamKrishan" ></constructor-arg>
+                <constructor-arg name="book">
+                <list>
+                <ref bean="b"/>
+                <ref bean="b2"/>
+                <ref bean="b3"/>
+                </list>
+                </constructor-arg>
+                </bean>
+                
+                	<!-- Item class Setter object collection -->
+          	<bean id="i" class="com.spring.siobj.list.Item">
+          	<property name="itemId" value="303" ></property>
+          	<property name="itemName" value="Pen" ></property>
+          	<property name="itemPrice" value="10.01" ></property>
+          	</bean>	
+          	
+          	
+          	<bean id="i2" class="com.spring.siobj.list.Item">
+          	<property name="itemId" value="306" ></property>
+          	<property name="itemName" value="Eraser" ></property>
+          	<property name="itemPrice" value="4.0" ></property>
+          	</bean>	
+          	
+          		
+          	<bean id="i3" class="com.spring.siobj.list.Item">
+          	<property name="itemId" value="312" ></property>
+          	<property name="itemName" value="Colors" ></property>
+          	<property name="itemPrice" value="20.05" ></property>
+          	</bean>	
+                
+                 <!-- Order Class Setter object Collection  -->
+          <bean id="O2" class="com.spring.siobj.list.Orderr">
+          <property name="orderId" value="114"> </property>
+          <property name="orderQuantity" value="550"> </property>
+          <property name="totalPrice" value="1050.75"> </property>
+          <property name="item">
+          <list>
+          <ref bean="i"/>
+          <ref bean="i2"/>
+          <ref bean="i3"/>
+          </list>
+          </property>
+          </bean>
+          
+            <!-- Setter/getter injection autowiring byname -->
+       <bean id="s3" class="com.spring.autowiring.setter.Student" autowire="byName" >
+            <property name="sId" value="221"></property>
+            <property name="sName" value="Nisha"></property>
+            
+       </bean>   
+                
+       <bean id="course" class="com.spring.autowiring.setter.Course"> 
+       <property name="courseId" value="505"> </property>
+       <property name="courseName" value="Java"> </property>
+       <property name="duration" value="7hrs"> </property>
+       </bean>
+          
+           <!-- Constructor injection autowiring  -->
+       <bean id="s4" class="com.spring.autowiring.constructor.Student" autowire="constructor" >
+            <constructor-arg name="sId" value="221"></constructor-arg>
+            <constructor-arg name="sName" value="Nisha"></constructor-arg>
+            
+       </bean>   
+                
+       <bean id="c1" class="com.spring.autowiring.constructor.Course"> 
+       <constructor-arg name="courseId" value="505"> </constructor-arg>
+       <constructor-arg name="courseName" value="Java"> </constructor-arg>
+       <constructor-arg name="duration" value="7hrs"> </constructor-arg>
+       </bean>
+          
+          
+          
+ </beans>
